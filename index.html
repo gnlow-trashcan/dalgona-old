@@ -2,7 +2,8 @@
 <head>
 </head>
 <body>
-    <script>
+    <script type="module">
+        import { makeDraggable } from "./src/makeDraggable.js"
         customElements.define(
             "dalgona-block",
             class extends HTMLElement {
@@ -10,33 +11,9 @@
                     super()
                     const template = document.getElementById("dalgona-block")
                     const content = template.content.cloneNode(true).querySelector("svg")
-                    this.makeDraggable(content)
+                    makeDraggable(content)
                     this.attachShadow({ mode: "open" })
                         .appendChild(content)
-                }
-                makeDraggable(target) {
-                    console.log(target)
-                    target.addEventListener("pointerdown", e => {
-                        const {
-                            e: initX,
-                            f: initY,
-                        } = target.transform.baseVal.getItem(0).matrix
-                        const start = {
-                            x: e.clientX - initX,
-                            y: e.clientY - initY,
-                        }
-                        const onMove = e => {
-                            target.transform.baseVal.getItem(0).setTranslate(
-                                e.clientX - start.x,
-                                e.clientY - start.y,
-                            )
-                        }
-                        console.log(target)
-                        document.body.addEventListener("pointermove", onMove)
-                        document.body.addEventListener("pointerup", e => {
-                            document.body.removeEventListener("pointermove", onMove)
-                        }, { once: true })
-                    })
                 }
             }
         )
@@ -56,7 +33,7 @@
             />
         </svg>
     </template>
-    <dalgona-block id="a"/>
+    <dalgona-block/>
     <script>
     </script>
 </body>
