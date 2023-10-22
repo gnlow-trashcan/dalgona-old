@@ -4,6 +4,7 @@
 <body>
     <script type="module">
         import { makeDraggable } from "./src/makeDraggable.js"
+        import { SvgSlot } from "./src/SvgSlot.js"
         customElements.define(
             "dalgona-block",
             class extends HTMLElement {
@@ -31,9 +32,14 @@
                 stroke="#fde"
                 stroke-width="0.3"
             />
+            <foreignObject width="100%" height="100%">
+                <slot></slot>
+            </foreignObject>
         </svg>
     </template>
-    <dalgona-block/>
+    <dalgona-block>
+        <dalgona-block></dalgona-block>
+    </dalgona-block>
     <script>
     </script>
 </body>

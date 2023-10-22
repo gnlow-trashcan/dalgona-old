@@ -1,5 +1,7 @@
 export const makeDraggable = (target) => {
     target.addEventListener("pointerdown", e => {
+        console.log(e)
+        e.stopPropagation()
         const {
             e: initX,
             f: initY,
