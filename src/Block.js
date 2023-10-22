@@ -1,4 +1,4 @@
-const root = document.querySelector("playground")
+const root = document.querySelector("foreignObject")
 
 export class Block extends HTMLElement {
     constructor() {
@@ -17,6 +17,7 @@ export class Block extends HTMLElement {
     }
 
     makeDraggable(target) {
+        console.log(target)
         target.addEventListener("pointerdown", e => {
             this.moveToRoot()
             e.stopPropagation()

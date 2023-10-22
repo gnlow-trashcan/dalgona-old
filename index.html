@@ -1,37 +1,45 @@
 <!doctype html>
-<head>
-</head>
-<body>
-    <script type="module">
-        import { Block } from "./src/Block.js"
-        customElements.define(
-            "dalgona-block",
-            Block,
-        )
-    </script>
-    <template id="dalgona-block">
-        <svg style="position: fixed" transform="translate(10 10)">
-            <path
-                d="
-                    M0 0V10L5 15V11A1 1 0 016 10H12A1 1 0 0012 0H6A1 1 0 005 1V5L0 0Z
-                "
-                transform="
-                    scale(10)
-                "
-                fill="#ffccdc"
-                stroke="#fde"
-                stroke-width="0.3"
-            />
+<html>
+    <head>
+    </head>
+    <body>
+        <script type="module">
+            import { Block } from "./src/Block.js"
+            customElements.define(
+                "dalgona-block",
+                Block,
+            )
+        </script>
+        <template id="dalgona-block">
+            <svg
+                style="position: fixed"
+                width="1000"
+                height="1000"
+                transform="translate(10 10)"
+            >
+                <path
+                    d="
+                        M0 0V10L5 15V11A1 1 0 016 10H12A1 1 0 0012 0H6A1 1 0 005 1V5L0 0Z
+                    "
+                    transform="
+                        scale(10)
+                    "
+                    fill="#ffccdc"
+                    stroke="#fde"
+                    stroke-width="0.3"
+                />
+                <foreignObject width="100%" height="100%">
+                    <slot></slot>
+                </foreignObject>
+            </svg>
+        </template>
+        <svg width="100%" height="100%">
             <foreignObject width="100%" height="100%">
-                <slot></slot>
+                <dalgona-block id="a">
+                    <dalgona-block id="b"></dalgona-block>
+                </dalgona-block>
             </foreignObject>
         </svg>
-    </template>
-    <playground>
-        <dalgona-block id="a">
-            <dalgona-block id="b"></dalgona-block>
-        </dalgona-block>
-    </playground>
-    <script>
-    </script>
-</body>
+        <script src="https://unpkg.com/adorable-css@1.4.3"></script>
+    </body>
+</html>
