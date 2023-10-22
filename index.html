@@ -3,20 +3,10 @@
 </head>
 <body>
     <script type="module">
-        import { makeDraggable } from "./src/makeDraggable.js"
-        import { SvgSlot } from "./src/SvgSlot.js"
+        import { Block } from "./src/Block.js"
         customElements.define(
             "dalgona-block",
-            class extends HTMLElement {
-                constructor() {
-                    super()
-                    const template = document.getElementById("dalgona-block")
-                    const content = template.content.cloneNode(true).querySelector("svg")
-                    makeDraggable(content)
-                    this.attachShadow({ mode: "open" })
-                        .appendChild(content)
-                }
-            }
+            Block,
         )
     </script>
     <template id="dalgona-block">
@@ -37,8 +27,8 @@
             </foreignObject>
         </svg>
     </template>
-    <dalgona-block>
-        <dalgona-block></dalgona-block>
+    <dalgona-block id="a">
+        <dalgona-block id="b"></dalgona-block>
     </dalgona-block>
     <script>
     </script>
