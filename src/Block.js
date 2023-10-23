@@ -19,7 +19,7 @@ export class Block extends HTMLElement {
     makeDraggable(target) {
         console.log(target)
         target.addEventListener("pointerdown", e => {
-            this.moveToRoot()
+            //this.moveToRoot()
             e.stopPropagation()
             const {
                 e: initX,
