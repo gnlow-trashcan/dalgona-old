@@ -1,9 +1,7 @@
 export class SvgSlot extends HTMLElement {
     connectedCallback() {
         setTimeout(() => {
-            console.log(this.shadowRoot.innerHTML)
-            console.log(this.shadowRoot.querySelector("slot"))
-            this.shadowRoot.querySelector("slot")?.replaceWith(this.innerHTML)
+            this.shadowRoot.querySelector("use")?.replaceWith(this.children[0]?.shadowRoot.children[0])
         })
     }
 }

@@ -1,6 +1,8 @@
 const root = document.querySelector("foreignObject")
 
-export class Block extends HTMLElement {
+import { SvgSlot } from "./SvgSlot.js"
+
+export class Block extends SvgSlot {
     constructor() {
         super()
         const template = document.getElementById("dalgona-block")
