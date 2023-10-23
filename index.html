@@ -5,19 +5,41 @@
     <body>
         <script type="module">
             import { Block } from "./src/Block.js"
+            import { SvgSlot } from "./src/SvgSlot.js"
+            customElements.define(
+                "dalgona-app",
+                class A extends SvgSlot {
+                    constructor() {
+                        super()
+                        const template = document.getElementById("dalgona-block")
+                        const content = template.content.cloneNode(true).querySelector("svg")
+                        this.attachShadow({ mode: "open" })
+                            .appendChild(content)
+                    }
+                }
+            )
             customElements.define(
                 "dalgona-block",
                 Block,
             )
         </script>
+        <template id="dalgona-app">
+            <svg
+                style="position: fixed"
+                width="1000"
+                height="1000"
+            >
+                <use/>
+            </svg>
+        </template>
         <template id="dalgona-block">
             <svg
                 style="position: fixed"
                 width="1000"
                 height="1000"
                 transform="translate(10 10)"
-                >
-                <g>
+            >
+                <g transform="translate(10 10)">
                 <use/>
                 <path
                     d="
@@ -33,9 +55,11 @@
                 </g>
             </svg>
         </template>
-        <dalgona-block id="a">
-            <dalgona-block id="b"></dalgona-block>
-        </dalgona-block>
+        <dalgona-app>
+            <dalgona-block id="a">
+                <dalgona-block id="b"></dalgona-block>
+            </dalgona-block>
+        </dalgona-app>
         <script src="https://unpkg.com/adorable-css@1.4.3"></script>
     </body>
 </html>
