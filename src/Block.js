@@ -6,10 +6,8 @@ export class Block extends SvgSlot {
     constructor() {
         super()
         const template = document.getElementById("dalgona-block")
-        this.content = template.content.cloneNode(true).querySelector("svg")
+        this.content = template.content.cloneNode(true).querySelector("svg > g")
         this.makeDraggable(this.content)
-        this.attachShadow({ mode: "open" })
-            .appendChild(this.content)
     }
 
     getContent() {
