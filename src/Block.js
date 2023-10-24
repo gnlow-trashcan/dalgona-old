@@ -8,10 +8,17 @@ export class Block extends SvgSlot {
         const template = document.getElementById("dalgona-block")
         this.content = template.content.cloneNode(true).querySelector("svg > g")
         this.makeDraggable(this.content)
+        this.content.addEventListener("pointerover", e => {
+            e.stopPropagation()
+            console.log("pointerover", this)
+        })
+        this.content.addEventListener("pointerout", e => {
+            e.stopPropagation()
+            console.log("pointerout", this)
+        })
     }
 
     getContent() {
-        console.log(this.content)
         return this.content
     }
 
@@ -24,7 +31,7 @@ export class Block extends SvgSlot {
     makeDraggable(target) {
         console.log("makeDraggable", this, target)
         target.addEventListener("pointerdown", e => {
-            console.log(this)
+            console.log("drag start", this)
             //this.moveToRoot()
             e.stopPropagation()
             const {
@@ -36,6 +43,7 @@ export class Block extends SvgSlot {
                 y: e.clientY - initY,
             }
             const onMove = e => {
+                console.log("pointermove", e.target)
                 target.transform.baseVal.getItem(0).setTranslate(
                     e.clientX - start.x,
                     e.clientY - start.y,
