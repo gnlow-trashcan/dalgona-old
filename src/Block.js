@@ -8,14 +8,6 @@ export class Block extends SvgSlot {
         const template = document.getElementById("d-block")
         this.content = template.content.cloneNode(true).querySelector("svg > g")
         this.makeDraggable(this.content)
-        this.content.addEventListener("pointerover", e => {
-            e.stopPropagation()
-            console.log("pointerover", this)
-        })
-        this.content.addEventListener("pointerout", e => {
-            e.stopPropagation()
-            console.log("pointerout", this)
-        })
     }
 
     getContent() {
@@ -43,7 +35,6 @@ export class Block extends SvgSlot {
                 y: e.clientY - initY,
             }
             const onMove = e => {
-                console.log("pointermove", e.target)
                 target.transform.baseVal.getItem(0).setTranslate(
                     e.clientX - start.x,
                     e.clientY - start.y,
