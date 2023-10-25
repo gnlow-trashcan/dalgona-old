@@ -4,19 +4,12 @@
     </head>
     <body>
         <script type="module">
+            import { App } from "./src/App.js"
             import { Block } from "./src/Block.js"
-            import { SvgSlot } from "./src/SvgSlot.js"
+            
             customElements.define(
                 "d-app",
-                class A extends SvgSlot {
-                    constructor() {
-                        super()
-                        const template = document.getElementById("d-app")
-                        const content = template.content.cloneNode(true).querySelector("svg")
-                        this.attachShadow({ mode: "open" })
-                            .appendChild(content)
-                    }
-                }
+                App,
             )
             customElements.define(
                 "d-block",
