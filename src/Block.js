@@ -5,7 +5,7 @@ import { SvgSlot } from "./SvgSlot.js"
 export class Block extends SvgSlot {
     constructor() {
         super()
-        const template = document.getElementById("dalgona-block")
+        const template = document.getElementById("d-block")
         this.content = template.content.cloneNode(true).querySelector("svg > g")
         this.makeDraggable(this.content)
         this.content.addEventListener("pointerover", e => {
